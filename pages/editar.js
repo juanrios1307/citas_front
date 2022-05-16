@@ -3,18 +3,18 @@ import { Container, Card, Row, Col, Spacer } from "@nextui-org/react";
 import Header from "../components/header";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { useRouter } from "next/router";
 import router from "next/router";
 import Axios from "axios";
 
-export default function crear() {
-  const [pacientes, setPacientes] = useState([]);
+export default function Editar(props) {
+  const { query } = useRouter();
+
   const [paciente, setPaciente] = useState("");
   const [tramite, setTramite] = useState("");
   const [fecha, setFecha] = React.useState(null);
@@ -22,10 +22,10 @@ export default function crear() {
   const [notas, setNotas] = useState("");
   const [estado, setEstado] = useState("");
 
-  const getPacientes = async () => {
-    setPacientes([]);
+  const getCita = async () => {
+    console.log(query.id);
 
-    const url = "http://localhost:5000/api/paciente";
+    const url = `http://localhost:5000/api/cita/${query.id}`;
     const config = {
       method: "GET",
       url: url,
@@ -33,17 +33,22 @@ export default function crear() {
     const response = await Axios(config);
     const data = response.data.data;
 
-    await setPacientes(data);
     console.log(data);
+
+    setPaciente(data.paciente.nombre + " " + data.paciente.apellido);
+    setTramite(data.tramite);
+    setFecha(data.fecha);
+    setLugar(data.lugar);
+    setNotas(data.notas);
+    setEstado(data.estado);
   };
 
   useEffect(() => {
-    getPacientes();
+    getCita();
   }, []);
 
-  const submit = async () => {
+  const editCita = async () => {
     const values = {
-      paciente: paciente,
       tramite: tramite,
       fecha: fecha,
       lugar: lugar,
@@ -51,9 +56,9 @@ export default function crear() {
       estado: estado,
     };
 
-    const url = "http://localhost:5000/api/cita";
+    const url = `http://localhost:5000/api/cita/${query.id}`;
     const config = {
-      method: "POST",
+      method: "PUT",
       url: url,
       data: values,
     };
@@ -62,19 +67,15 @@ export default function crear() {
 
     const mensaje = response.data.message;
     const status = response.status;
-
     console.log(mensaje);
-    if (status === 200) {
+
+    if (status == 200) {
       router.push("/misCitas");
     }
   };
 
   const handleTramite = (event) => {
     setTramite(event.target.value);
-  };
-
-  const handlePaciente = (event) => {
-    setPaciente(event.target.value);
   };
 
   const handleLugar = (event) => {
@@ -95,20 +96,12 @@ export default function crear() {
       <Card gap={10}>
         <Row justify="center" align="center">
           <Col justify="center" align="center">
-            <FormControl sx={{ minWidth: 220 }}>
-              <InputLabel id="demo-simple-select-label">Paciente</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={paciente}
-                label="Paciente"
-                onChange={handlePaciente}
-              >
-                {pacientes.map((paciente) => (
-                  <MenuItem value={paciente._id}>{paciente.nombre}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <TextField
+              disabled
+              id="outlined-required"
+              label="Paciente"
+              value={paciente}
+            />
           </Col>
         </Row>
 
@@ -117,7 +110,6 @@ export default function crear() {
         <Row justify="center" align="center">
           <Col justify="center" align="center">
             <TextField
-              required
               id="outlined-required"
               label="Tramite"
               value={tramite}
@@ -146,7 +138,6 @@ export default function crear() {
         <Row justify="center" align="center">
           <Col justify="center" align="center">
             <TextField
-              required
               id="outlined-required"
               label="Lugar"
               value={lugar}
@@ -183,8 +174,8 @@ export default function crear() {
 
         <Row justify="center" align="center">
           <Col justify="center" align="center">
-            <Button variant="outlined" onClick={submit}>
-              Guardar
+            <Button variant="outlined" onClick={editCita}>
+              Editar
             </Button>
           </Col>
         </Row>
