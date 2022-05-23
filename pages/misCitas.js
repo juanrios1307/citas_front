@@ -68,7 +68,7 @@ export default function App() {
       <Grid.Container gap={2} justify="center" align="center">
         {citas.map((cita) => {
           return (
-            <Grid  key={cita._id} xs={12} sm={4} justify="center" align="center">
+            <Grid key={cita._id} xs={12} sm={4} justify="center" align="center">
               <Card css={{ mw: "400px" }}>
                 <Card.Header>
                   <Row>
@@ -90,7 +90,9 @@ export default function App() {
                     <Grid xs={5}>
                       <Row>
                         <Col>
-                          <Text>{moment(cita.fecha).format("L")}</Text>
+                          <Text>
+                            {moment(cita.fecha).format("MM DD YY, h:mm a")}
+                          </Text>
                           <Text>{cita.lugar}</Text>
                           <Text>{cita.tramite}</Text>
                           <Text>{cita.estado}</Text>

@@ -31,26 +31,30 @@ export default function App() {
       <Grid.Container gap={2} justify="center" align="center">
         {pacientes.map((paciente) => {
           return (
-            <Row  key={paciente._id} justify="center" align="center">
-              <Grid xs={12} sm={4} justify="center" align="center">
-                <Card css={{ mw: "400px" }}>
-                  <Card.Header>
-                    <Text>
-                      {paciente.nombre} {paciente.apellido}
-                    </Text>
-                  </Card.Header>
-                  <Divider />
-                  <Card.Body>
-                    <Text>{paciente.correo}</Text>
-                    <Text>{paciente.telefono}</Text>
-                  </Card.Body>
-                  <Divider />
-                  <Card.Footer>
-                    <Text>{paciente.cedula}</Text>
-                  </Card.Footer>
-                </Card>
-              </Grid>
-            </Row>
+            <Grid
+              key={paciente._id}
+              xs={12}
+              sm={4}
+              justify="center"
+              align="center"
+            >
+              <Card css={{ mw: "400px" }}>
+                <Card.Header>
+                  <Text>
+                    {paciente.nombre} {paciente.apellido}
+                  </Text>
+                </Card.Header>
+                <Divider />
+                <Card.Body>
+                  <Text>{paciente.correo}</Text>
+                  <Text>{paciente.telefono}</Text>
+                </Card.Body>
+                <Divider />
+                <Card.Footer>
+                  <Text>{paciente.cedula}</Text>
+                </Card.Footer>
+              </Card>
+            </Grid>
           );
         })}
       </Grid.Container>
