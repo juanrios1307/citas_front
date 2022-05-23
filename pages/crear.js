@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select  from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -13,7 +13,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import router from "next/router";
 import Axios from "axios";
 
-export default function crear() {
+export default function Crear() {
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState("");
   const [tramite, setTramite] = useState("");

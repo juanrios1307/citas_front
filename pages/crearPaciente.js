@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Card, Row, Col, Spacer } from "@nextui-org/react";
 import Header from "../components/header";
 import TextField from "@mui/material/TextField";
@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import router from "next/router";
 import Axios from "axios";
 
-export default function crear() {
+export default function Crear() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [cedula, setCedula] = useState("");
