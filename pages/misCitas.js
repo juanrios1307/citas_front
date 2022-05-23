@@ -68,7 +68,7 @@ export default function App() {
       <Grid.Container gap={2} justify="center" align="center">
         {citas.map((cita) => {
           return (
-            <Grid xs={12} sm={4} justify="center" align="center">
+            <Grid  key={cita._id} xs={12} sm={4} justify="center" align="center">
               <Card css={{ mw: "400px" }}>
                 <Card.Header>
                   <Row>

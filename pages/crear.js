@@ -105,7 +105,7 @@ export default function Crear() {
                 onChange={handlePaciente}
               >
                 {pacientes.map((paciente) => (
-                  <MenuItem value={paciente._id}>{paciente.nombre}</MenuItem>
+                  <MenuItem key={paciente._id} value={paciente._id}>{paciente.nombre}</MenuItem>
                 ))}
               </Select>
             </FormControl>
