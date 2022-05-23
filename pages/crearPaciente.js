@@ -22,7 +22,7 @@ export default function Crear() {
       telefono,
     };
 
-    const url = "http://localhost:5000/api/paciente";
+    const url = "https://citasback.herokuapp.com/api/paciente";
     const config = {
       method: "POST",
       url: url,

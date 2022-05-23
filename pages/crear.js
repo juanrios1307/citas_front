@@ -25,7 +25,7 @@ export default function Crear() {
   const getPacientes = async () => {
     setPacientes([]);
 
-    const url = "http://localhost:5000/api/paciente";
+    const url = "https://citasback.herokuapp.com/api/paciente";
     const config = {
       method: "GET",
       url: url,
@@ -51,7 +51,7 @@ export default function Crear() {
       estado: estado,
     };
 
-    const url = "http://localhost:5000/api/cita";
+    const url = "https://citasback.herokuapp.com/api/cita";
     const config = {
       method: "POST",
       url: url,

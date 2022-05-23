@@ -8,7 +8,7 @@ export default function App() {
   const getPacientes = async () => {
     setPacientes([]);
 
-    const url = "http://localhost:5000/api/paciente";
+    const url = "https://citasback.herokuapp.com/api/paciente";
     const config = {
       method: "GET",
       url: url,

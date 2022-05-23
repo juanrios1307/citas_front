@@ -24,7 +24,7 @@ export default function App() {
   const getCitas = async () => {
     setCitas([]);
 
-    const url = "http://localhost:5000/api/cita";
+    const url = "https://citasback.herokuapp.com//api/cita";
     const config = {
       method: "GET",
       url: url,
@@ -37,7 +37,7 @@ export default function App() {
   };
 
   const deleteCita = async (id) => {
-    const url = `http://localhost:5000/api/cita/${id}`;
+    const url = `https://citasback.herokuapp.com//api/cita/${id}`;
     const config = {
       method: "DELETE",
       url: url,

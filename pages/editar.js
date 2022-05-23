@@ -3,8 +3,6 @@ import { Container, Card, Row, Col, Spacer } from "@nextui-org/react";
 import Header from "../components/header";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -12,7 +10,7 @@ import { useRouter } from "next/router";
 import router from "next/router";
 import Axios from "axios";
 
-export default function Editar(props) {
+export default function Editar() {
   const { query } = useRouter();
 
   const [paciente, setPaciente] = useState("");
@@ -25,7 +23,7 @@ export default function Editar(props) {
   const getCita = async () => {
     console.log(query.id);
 
-    const url = `http://localhost:5000/api/cita/${query.id}`;
+    const url = `https://citasback.herokuapp.com/api/cita/${query.id}`;
     const config = {
       method: "GET",
       url: url,
@@ -56,7 +54,7 @@ export default function Editar(props) {
       estado: estado,
     };
 
-    const url = `http://localhost:5000/api/cita/${query.id}`;
+    const url = `https://citasback.herokuapp.com/api/cita/${query.id}`;
     const config = {
       method: "PUT",
       url: url,
@@ -69,7 +67,7 @@ export default function Editar(props) {
     const status = response.status;
     console.log(mensaje);
 
-    if (status == 200) {
+    if (status === 200) {
       router.push("/misCitas");
     }
   };
